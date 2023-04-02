@@ -1,0 +1,77 @@
+<h2 class="content-block">Bienvenido a la formula uno</h2>
+<div class="content-block-auno">
+  <div class="dx-card responsive-paddings">
+    <div class="logos-container"></div>
+    <dx-tab-panel
+      #tabPanel
+      [height]="200"
+      [width]="500"
+      [dataSource]="companies"
+      [selectedIndex]="0"
+      [loop]="false"
+      [animationEnabled]="true"
+      [swipeEnabled]="true"
+      (onSelectionChanged)="selectionX($event)"
+    >
+      <div *dxTemplate="let company of 'title'">
+        <span>{{ company.name }}</span>
+      </div>
+
+      <div *dxTemplate="let company of 'item'">
+        <div class="tabpanel-item">
+          <div>
+            <p>
+              <b>id: {{ company.id }}</b>
+              <b>Jefe: {{ company.team_chief }}</b>
+              (<span> Puntos: {{ company.points }}</span
+              >)
+            </p>
+            <p>
+              <span> Base: {{ company.base }}</span>
+            </p>
+          </div>
+        </div>
+
+ 
+      </div>
+    </dx-tab-panel>
+    <dx-tab-panel
+    #tabPanel
+    [height]="800"
+    [width]="500"
+    [dataSource]="employee"
+    [loop]="false"
+    [animationEnabled]="true"
+    [swipeEnabled]="true"
+  >
+    <div *dxTemplate="let emplo of 'title'">
+      <span>Piloto</span>
+    </div>
+    <div *dxTemplate="let emplo of 'item'">
+      <dx-form id="form" [formData]="emplo">
+        <dxi-item itemType="group" cssClass="first-group" [colCount]="4">
+          <dxi-item>
+            <div class="form-avatar"></div>
+          </dxi-item>
+          <dxi-item itemType="group" [colSpan]="3">
+            <dxi-item dataField="name"></dxi-item>
+            <dxi-item dataField="country"></dxi-item>
+            <dxi-item
+              dataField="date_of_birth"
+              editorType="dxDateBox"
+              [editorOptions]="{ width: '100%' }"
+            ></dxi-item>
+            <dxi-item dataField="points"></dxi-item>
+          </dxi-item>
+        </dxi-item>
+      </dx-form>
+    </div>
+  </dx-tab-panel>
+
+    <div class="item-box">
+      Item <span>{{ tabPanel.selectedIndex + 1 }}</span> of
+      <span>{{ itemCount }}</span>
+    </div>
+  </div>
+</div>
+
